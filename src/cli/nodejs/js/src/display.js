@@ -12,11 +12,20 @@ const FG_CYAN = "36";
 const VERTICAL_SEPERATOR = "|";
 
 function clearLine() {
-    out.write(`${ESCAPE}K`);
+    write(`${ESCAPE}K`);
 }
 
+function hideCursor(){
+    write(`${ESCAPE}?25l`);
+}
+
+function clearScreen(){
+    write(`${ESCAPE}2J`);
+}
+exports.clearScreen = clearScreen;
+
 function goto(row, column) {
-    out.write(`${ESCAPE}${column};${row}H`);
+    write(`${ESCAPE}${column};${row}H`);
 }
 
 exports.goto = goto;
@@ -26,7 +35,7 @@ function writeMessage(message) {
     clearLine();
     goto(0, END_OF_BOARD + 1);
     clearLine();
-    out.write(message);
+    write(message);
     setColor(RESET);
 }
 exports.writeMessage = writeMessage;
@@ -38,7 +47,7 @@ exports.escapeColor = escapeColor;
 
 function setColor(color, background) {
     var colorText = background ? `${color};${background}` : color;
-    out.write(escapeColor(colorText));
+    write(escapeColor(colorText));
 }
 exports.setColor = setColor;
 
@@ -59,13 +68,13 @@ exports.writeInPosition = function(x, y, text, color, background) {
 }
 
 exports.drawEmptyBoard = function() {
-    console.clear();
+    clearScreen();
+    hideCursor();
     write("\n");
 
     for (let index = 1; index <= 9; index++) {
         setColor(FG_GREEN);
         write(` ${index} `);
-
 
         if (index == 9)
             break;
