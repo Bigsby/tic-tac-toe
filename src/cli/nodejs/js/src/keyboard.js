@@ -8,6 +8,7 @@ exports.listen = function(keyhandler) {
 
     process.stdin.on('keypress', (str, key) => {
         if (key.ctrl && key.name == "c") {
+            console.clear();
             process.exit();
         } else {
             if (key.name > "0" && key.name <= "9") {
