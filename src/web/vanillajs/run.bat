@@ -1,0 +1,1 @@
+start  chrome "file:///%~dp0src/index.html"
