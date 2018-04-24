@@ -94,11 +94,15 @@ namespace TicTacToe.ViewModels
 
         internal void HandleClick(CellViewModel cellViewModel)
         {
+            var completeResult = _currentBoard.IsComplete();
+
+            if (completeResult.IsOver) return;
+
             if (cellViewModel.IsSet) return;
             cellViewModel.Text = CurrentPlayer.Letter;
             cellViewModel.Foreground = CurrentPlayer.Color;
 
-            var completeResult = _currentBoard.IsComplete();
+            completeResult = _currentBoard.IsComplete();
 
             if (completeResult.IsOver)
             {

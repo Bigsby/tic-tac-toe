@@ -1,8 +1,5 @@
 using System;
-using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Markup;
 using TicTacToe.ViewModels;
 
 

@@ -21,6 +21,7 @@
             </Grid.ColumnDefinitions>
             <Grid.Resources>
                 <Style TargetType="Button">
+                    <Setter Property="Focusable" Value="false"/>
                     <Setter Property="FontSize" Value="30"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="BorderThickness" Value="0"/>
@@ -72,8 +73,16 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Restart" Command="{Binding Restart}" FontSize="20"/>
-            <Button Grid.Column="1" Content="Quit" Command="{Binding Quit}" FontSize="20"/>
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Focusable" Value="false"/>
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </Grid.Resources>
+            <Button Content="Restart" Command="{Binding Restart}"/>
+            <Button Grid.Column="1" Content="Quit" Command="{Binding Quit}"/>
         </Grid>
     </Grid>
 </Window>
