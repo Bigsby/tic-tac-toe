@@ -18,6 +18,8 @@ html, body {
 div#container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 table {
@@ -30,12 +32,12 @@ tr.middle {
 }
 
 td {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     color: green;
     text-align: center;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
     cursor: pointer;
 }
 
@@ -44,6 +46,9 @@ td.middle {
     border-right: solid 1px cyan;
 }
 
-input#restart {
-    align-self: center;
+
+
+div#text, input#restart {
+    font-size: 20px;
+    margin: 10px;
 }
