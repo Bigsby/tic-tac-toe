@@ -9,7 +9,7 @@ const FG_GREEN = "32";
 
 const FG_CYAN = "36";
 
-const VERTICAL_SEPERATOR = "|";
+const VERTICAL_SEPERATOR = "│";
 
 function clearLine() {
     write(`${ESCAPE}K`);
@@ -82,7 +82,7 @@ exports.drawEmptyBoard = function() {
         if (index % 3 == 0) {
             write("\n");
             setColor(FG_CYAN);
-            write("-----------");
+            write("───┼───┼───");
             write("\n");
         } else {
             setColor(FG_CYAN);
