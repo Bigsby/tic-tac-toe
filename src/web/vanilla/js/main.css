@@ -1,0 +1,49 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lucida Console";
+    color: #d3d3d3;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+div#container {
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr.middle {
+    border-top: solid 1px cyan;
+    border-bottom: solid 1px cyan;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+td.middle {
+    border-left: solid 1px cyan;
+    border-right: solid 1px cyan;
+}
+
+input#restart {
+    align-self: center;
+}
