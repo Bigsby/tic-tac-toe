@@ -1,0 +1,32 @@
+<Project 
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+        <ProjectGuid>{BF08B39F-D05E-4920-923F-9D998C44711B}</ProjectGuid>
+        <OutputType>WinExe</OutputType>
+        <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+        <PlatformTarget>x64</PlatformTarget>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Xaml">
+            <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="App.cs"/>
+        <Resource Include="MainWindow.xaml"/>
+        <Compile Include="ViewModels/BaseViewModel.cs"/>
+        <Compile Include="ViewModels/GameViewModel.cs"/>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
