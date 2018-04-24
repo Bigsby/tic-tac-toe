@@ -48,7 +48,7 @@
 
     function setPlayerAndText() {
         currentPlayer = currentPlayer == xPlayer ? oPlayer : xPlayer;
-        textDisplay.innerHTML = `Press the number to fill in with <span style="color:${currentPlayer.color}">${currentPlayer.letter}</span>`;
+        textDisplay.innerHTML = `Press or click number to fill in with <span style="color:${currentPlayer.color}">${currentPlayer.letter}</span>`;
     }
 
     function areThreeEqual(x1, y1, x2, y2, x3, y3) {
@@ -188,6 +188,18 @@
         fillInEmptyBoard();
         currentBoard = emtpyBoard();
         setPlayerAndText();
+        window.onkeypress = function(event) {
+            let keyName = event.key;
+            
+            if (keyName == "r") {
+                start();
+                return;
+            } 
+
+            if (keyName >= "1" && keyName <= "9") {
+                handleClick(keyName);
+            }
+        }
     }
 
     document.getElementById("restart").onclick = function () {

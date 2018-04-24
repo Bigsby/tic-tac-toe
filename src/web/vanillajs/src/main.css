@@ -27,8 +27,8 @@ table {
 }
 
 tr.middle {
-    border-top: solid 1px cyan;
-    border-bottom: solid 1px cyan;
+    border-top: solid 2px cyan;
+    border-bottom: solid 2px cyan;
 }
 
 td {
@@ -42,8 +42,8 @@ td {
 }
 
 td.middle {
-    border-left: solid 1px cyan;
-    border-right: solid 1px cyan;
+    border-left: solid 2px cyan;
+    border-right: solid 2px cyan;
 }
 
 
