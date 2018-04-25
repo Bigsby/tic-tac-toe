@@ -122,11 +122,11 @@
             "name": "Web",
             "runtimes": [
                 {
-                    "name": "VanillaJS",
+                    "name": "Vanilla",
                     "languages": [
                         {
                             "name": "JavaScript",
-                            "link": "web/vanillajs",
+                            "link": "web/vanilla/js",
                             "ide": "VS Code"
                         },
                         {

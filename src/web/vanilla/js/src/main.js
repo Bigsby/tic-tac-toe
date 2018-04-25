@@ -22,7 +22,7 @@
         letter: "O",
         color: "magenta"
     };
-    let currentPlayer = oPlayer;
+    let currentPlayer;
 
     function emtpyBoard() {
         return [
@@ -187,6 +187,7 @@
     function start() {
         fillInEmptyBoard();
         currentBoard = emtpyBoard();
+        currentPlayer = oPlayer;
         setPlayerAndText();
         window.onkeypress = function(event) {
             let keyName = event.key;
