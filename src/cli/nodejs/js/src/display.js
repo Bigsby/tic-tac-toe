@@ -4,10 +4,10 @@ const END_OF_BOARD = 7;
 
 const ESCAPE = "\x1b[";
 const RESET = "0";
-const FG_RED = "31";
-const FG_GREEN = "32";
+const COLOR_GREEN = "2";
+const COLOR_BLACK = "0";
 
-const FG_CYAN = "36";
+const FG_CYAN = "6";
 
 const VERTICAL_SEPERATOR = "│";
 
@@ -15,12 +15,13 @@ function clearLine() {
     write(`${ESCAPE}K`);
 }
 
-function hideCursor(){
+function hideCursor() {
     write(`${ESCAPE}?25l`);
 }
 
-function clearScreen(){
+function clearScreen() {
     write(`${ESCAPE}2J`);
+    resetColor();
 }
 exports.clearScreen = clearScreen;
 
@@ -30,50 +31,75 @@ function goto(row, column) {
 
 exports.goto = goto;
 
-function writeMessage(message) {
-    goto(0, END_OF_BOARD);
-    clearLine();
+function writePlayerMessage(prefixText, player, color, sufixText) {
     goto(0, END_OF_BOARD + 1);
     clearLine();
-    write(message);
-    setColor(RESET);
-}
-exports.writeMessage = writeMessage;
+    write(prefixText);
 
-function escapeColor(color){
+    if (player) {
+        setColor(color);
+        write(player);
+        resetColor();
+
+    }
+
+    if (sufixText) {
+        write(sufixText);
+    }
+}
+exports.writePlayerMessage = writePlayerMessage;
+
+function writeFooterMessage(message) {
+    goto(0, END_OF_BOARD + 3);
+    write(message);
+}
+exports.writeFooterMessage = writeFooterMessage;
+
+function escapeColor(color) {
     return `${ESCAPE}${color}m`;
 }
 exports.escapeColor = escapeColor;
 
-function setColor(color, background) {
-    var colorText = background ? `${color};${background}` : color;
-    write(escapeColor(colorText));
+function resetColor() {
+    write(escapeColor(RESET))
+}
+
+function setColor(color, inverted) {
+    if (inverted) {
+        write(escapeColor(`3${COLOR_BLACK};4${color}`));
+    } else {
+        write(escapeColor(`3${color}`));
+    }
 }
 exports.setColor = setColor;
 
 function write(text) {
     out.write(text);
 }
-exports.write = write;
 
-exports.writeInPosition = function(x, y, text, color, background) {
-    goto(x, y);
+function offsetColumn(column) {
+    return 3 + (column * 4);
 
-    if (color) {
-        setColor(color, background);
-    }
-        
-    write(text);
-    setColor(RESET);
 }
 
-exports.drawEmptyBoard = function() {
+function offsetRow(row) {
+    return 2 + (row * 2);
+}
+
+exports.writeInPosition = function (x, y, text, color, inverted) {
+    goto(offsetColumn(x), offsetRow(y));
+    setColor(color, inverted);
+    write(text);
+    resetColor();
+}
+
+exports.drawEmptyBoard = function () {
     clearScreen();
     hideCursor();
-    write("\n");
+    write("\n ");
 
     for (let index = 1; index <= 9; index++) {
-        setColor(FG_GREEN);
+        setColor(COLOR_GREEN);
         write(` ${index} `);
 
         if (index == 9)
@@ -82,15 +108,15 @@ exports.drawEmptyBoard = function() {
         if (index % 3 == 0) {
             write("\n");
             setColor(FG_CYAN);
-            write("───┼───┼───");
-            write("\n");
+            write(" ───┼───┼───");
+            write("\n ");
         } else {
             setColor(FG_CYAN);
             write(VERTICAL_SEPERATOR);
         }
     }
 
-    setColor(RESET);
+    resetColor();
 }
 
 exports.RESET = RESET;

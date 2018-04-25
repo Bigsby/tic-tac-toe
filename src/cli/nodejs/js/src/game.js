@@ -1,95 +1,16 @@
 const display = require("./display");
 const keyboard = require("./keyboard");
+const gameObjects = require("./gameObjects");
 
-const FG_BLACK = "30";
-const FG_YELLOW = "33";
-const BG_YELLOW = "43";
-const FG_MAGENTA = "35";
-const BG_MAGENTA = "45";
+const COLOR_YELLOW = "3";
+const COLOR_MAGENTA = "5";
 
-const completionTypes = Object.freeze({
-    draw: 0,
-    column: 1,
-    row: 2,
-    diagonal: 3
-});
 
-const KEY_MESSAGE = `
-${display.escapeColor(display.RESET)}Press 'R' to Restart
-Press 'Q' to Quit`
+
+const KEY_MESSAGE = `Press 'R' to Restart\nPress 'Q' to Quit`
 
 let currentPlayer;
 let currentBoard;
-
-class CompleteResult {
-    constructor(type, sequence) {
-        this.type = type;
-        this.sequence = sequence;
-        this.player = currentPlayer;
-    }
-}
-
-class Board {
-    constructor() {
-        this.values = new Array(3);
-        for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
-            this.values[rowIndex] = new Array(3);
-        }
-    }
-
-    isEmpty(matrixPoint) {
-        return !this.values[matrixPoint.row][matrixPoint.column];
-    }
-
-    setValue(matrixPoint, value) {
-        this.values[matrixPoint.row][matrixPoint.column] = value;
-    }
-
-    areThreeEqual(x1, y1, x2, y2, x3, y3) {
-        return this.values[x1][y1] && this.values[x1][y1] == this.values[x2][y2] && this.values[x2][y2] == this.values[x3][y3];
-    }
-
-    isOver() {
-        for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
-            if (this.areThreeEqual(0, columnIndex, 1, columnIndex, 2, columnIndex)) {
-                return new CompleteResult(completionTypes.column, columnIndex, this.values[0][columnIndex]);
-            }
-        }
-
-        for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
-            if (this.areThreeEqual(rowIndex, 0, rowIndex, 1, rowIndex, 2)) {
-                return new CompleteResult(completionTypes.row, rowIndex, this.values[rowIndex][1]);
-            }
-        }
-
-        if (this.areThreeEqual(0, 0, 1, 1, 2, 2)) {
-            return new CompleteResult(completionTypes.diagonal, 0, this.values[1][1]);
-        }
-
-        if (this.areThreeEqual(2, 0, 1, 1, 0, 2)) {
-            return new CompleteResult(completionTypes.diagonal, 1, this.values[1][1]);
-        }
-
-        let isFull = true;
-        for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
-            for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
-                if (!this.values[rowIndex][columnIndex]) {
-                    return false;
-                }
-            }
-        }
-
-        return new CompleteResult(completionTypes.draw);
-    }
-}
-
-class Player {
-    constructor(letter, color, background) {
-        this.letter = letter;
-        this.color = color;
-        this.background = background;
-    }
-}
 
 class MatrixPoint {
     constructor(number) {
@@ -105,86 +26,56 @@ class MatrixPoint {
     }
 }
 
-const XPlayer = new Player("X", FG_YELLOW, BG_YELLOW);
-const OPlayer = new Player("O", FG_MAGENTA, BG_MAGENTA);
+const XPlayer = new gameObjects.Player("X", COLOR_YELLOW);
+const OPlayer = new gameObjects.Player("O", COLOR_MAGENTA);
 
 function setPlayerAndDisplayMessage() {
     currentPlayer = currentPlayer == XPlayer ? OPlayer : XPlayer;
-    display.writeMessage(`Press the number to fill in with ${display.escapeColor(currentPlayer.color)} ${currentPlayer.letter}
-${KEY_MESSAGE}`);
+    display.writePlayerMessage("Press the number to fill in with ", currentPlayer.letter, currentPlayer.color);
 }
 
 function highlightRow(row) {
-    let displayRow = rowToDisplayPosition(row);
     for (let columnIndex = 0; columnIndex < 3; columnIndex++) {
-        display.writeInPosition(columnToDisplayPosition(columnIndex), displayRow, currentPlayer.letter, FG_BLACK, currentPlayer.background);
+        display.writeInPosition(columnIndex, row, currentPlayer.letter, currentPlayer.color, true);
     }
 }
 
 function highlightColumn(column) {
-    let displayColumn = columnToDisplayPosition(column);
     for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
-        display.writeInPosition(displayColumn, rowToDisplayPosition(rowIndex), currentPlayer.letter, FG_BLACK, currentPlayer.background);
+        display.writeInPosition(column, rowIndex, currentPlayer.letter, currentPlayer.color, true);
     }
 }
 
 function hightlightDiagonal(diagonal) {
-    display.writeInPosition(
-        columnToDisplayPosition(1),
-        rowToDisplayPosition(1),
-        currentPlayer.letter,
-        FG_BLACK,
-        currentPlayer.background);
+    display.writeInPosition(1, 1, currentPlayer.letter, currentPlayer.color, true);
 
     if (diagonal == 1) {
-        display.writeInPosition(
-            columnToDisplayPosition(0),
-            rowToDisplayPosition(2),
-            currentPlayer.letter,
-            FG_BLACK,
-            currentPlayer.background);
-        display.writeInPosition(
-            columnToDisplayPosition(2),
-            rowToDisplayPosition(0),
-            currentPlayer.letter,
-            FG_BLACK,
-            currentPlayer.background);
+        display.writeInPosition(0, 2, currentPlayer.letter, currentPlayer.color, true);
+        display.writeInPosition(2, 0, currentPlayer.letter, currentPlayer.color, true);
     } else {
-        display.writeInPosition(
-            columnToDisplayPosition(0),
-            rowToDisplayPosition(0),
-            currentPlayer.letter,
-            FG_BLACK,
-            currentPlayer.background);
-        display.writeInPosition(
-            columnToDisplayPosition(2),
-            rowToDisplayPosition(2),
-            currentPlayer.letter,
-            FG_BLACK,
-            currentPlayer.background);
+        display.writeInPosition(0, 0, currentPlayer.letter, currentPlayer.color, true);
+        display.writeInPosition(2, 2, currentPlayer.letter, currentPlayer.color, true);
     }
 }
 
 function displayOver(overResult) {
 
     switch (overResult.type) {
-        case completionTypes.draw:
-        display.writeMessage(`It's a draw!
-${KEY_MESSAGE}`);    
+        case gameObjects.completionTypes.draw:
+        display.writePlayerMessage("It's a draw!");    
             return;
-        case completionTypes.row:
+        case gameObjects.completionTypes.row:
             highlightRow(overResult.sequence);
             break;
-        case completionTypes.column:
+        case gameObjects.completionTypes.column:
             highlightColumn(overResult.sequence);
             break;
-        case completionTypes.diagonal:
+        case gameObjects.completionTypes.diagonal:
             hightlightDiagonal(overResult.sequence);
             break;
     }
 
-    display.writeMessage(`Player ${display.escapeColor(overResult.player.color)} ${overResult.player.letter} ${display.escapeColor(display.RESET)} won!
-${KEY_MESSAGE}`);
+    display.writePlayerMessage("Player ", currentPlayer.letter, currentPlayer.color, " won!");
 }
 
 function handleKey(key) {
@@ -215,28 +106,18 @@ function handleKey(key) {
     }
 }
 
-function columnToDisplayPosition(column) {
-    return 2 + (column * 4);
-
-}
-
-function rowToDisplayPosition(row) {
-    return 2 + (row * 2);
-}
-
 function setValue(matrixPoint, value, color) {
     currentBoard.setValue(matrixPoint, value);
-    let displayRow = rowToDisplayPosition(matrixPoint.row);
-    let displayColumn = columnToDisplayPosition(matrixPoint.column);
 
-    display.writeInPosition(displayColumn, displayRow, value, color);
+    display.writeInPosition(matrixPoint.column, matrixPoint.row, value, color);
 }
 
 function start() {
-    currentBoard = new Board();
+    currentBoard = new gameObjects.Board();
     currentPlayer = OPlayer;
     display.drawEmptyBoard();
     setPlayerAndDisplayMessage();
+    display.writeFooterMessage(KEY_MESSAGE);
     keyboard.listen(handleKey);
 }
 exports.start = start;
