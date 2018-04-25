@@ -35,6 +35,10 @@ div#imageContainer {
     text-align: center;
 }
 
+img {
+    max-width: 80%;;
+}
+
 footer {
     background-color: #265077;
     width: 100%;
@@ -60,12 +64,11 @@ div#intefaceContainer {
 .interface-group {
     border: solid 2px #cc6600;
     margin: 20px;
-    min-width: 200px;
+    width: 230px;
 }
 
 .interface-title {
     padding: 5px;
-    
     background-color:#cc6600;
     text-align: center;
 }
@@ -74,7 +77,6 @@ div#intefaceContainer {
     padding: 5px;
     color: #fefefe;
     background-color:#265077;
-    
 }
 
 .language-group {

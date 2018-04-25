@@ -6,7 +6,6 @@
     function populateLanguages(container, languages) {
         if (!languages || !languages.length) return;
 
-        console.log("Got languages");
         languages.forEach(languageItem => {
             let languageGroup = document.createElement("div");
             languageGroup.className = "language-group";
@@ -17,7 +16,9 @@
                 languageLink.href = baseSourceUrl + languageItem.link;
                 languageLink.target = "_blank";
                 languageLink.innerText = languageItem.name;
-                languageTitle.title = languageItem.ide;
+                if (languageItem.ide) {
+                    languageTitle.title = languageItem.ide;
+                }
                 languageTitle.appendChild(languageLink);
             } else {
                 languageTitle.innerText = languageItem.name;
@@ -30,8 +31,6 @@
 
     function populateRuntimes(container, runtimes) {
         if (!runtimes || !runtimes.length) return;
-
-        console.log("Got runtimes");
 
         runtimes.forEach(runtimeItem => {
             let runtimeGroup = document.createElement("div");
@@ -49,9 +48,9 @@
 
     function populateIntefaces(container, interfaces) {
         if (!interfaces || !interfaces.length) return;
-        console.log("Got intefaces");
+
         interfaces.forEach(interfaceItem => {
-            console.log("inteface " + interfaceItem.name);
+
             let interfaceGroup = document.createElement("div");
             interfaceGroup.className = "interface-group";
             let interfaceTitle = document.createElement("div");
@@ -74,7 +73,6 @@
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log("Go data!");
             populateList(this.response);
         }
     };

@@ -111,16 +111,10 @@
                     "name": "UWP"
                 },
                 {
-                    "name": "Electron"
-                },
-                {
-                    "name": "GTK+"
-                },
-                {
                     "name": "Windows Forms"
                 },
                 {
-                    "name": "Qt"
+                    "name": "Cocoa"
                 }
             ]
         },
@@ -132,7 +126,8 @@
                     "languages": [
                         {
                             "name": "JavaScript",
-                            "link": "web/vanillajs"
+                            "link": "web/vanillajs",
+                            "ide": "VS Code"
                         },
                         {
                             "name": "TypeScript"
@@ -141,6 +136,9 @@
                             "name": "CoffeeScript"
                         }
                     ]
+                },
+                {
+                    "name": "jQuery"
                 },
                 {
                     "name": "AngularJS"
@@ -202,9 +200,6 @@
             "name": "Cross-Platform",
             "runtimes": [
                 {
-                    "name": "Xamarin Shared"
-                },
-                {
                     "name": "Xamarin Forms"
                 },
                 {
@@ -212,6 +207,18 @@
                 },
                 {
                     "name": "Unity"
+                },
+                {
+                    "name": "GTK+"
+                },
+                {
+                    "name": "Qt"
+                },
+                {
+                    "name": "Cordova"
+                },
+                {
+                    "name": "Electron"
                 }
             ]
         }
