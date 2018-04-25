@@ -27,6 +27,7 @@
         <Resource Include="MainWindow.xaml"/>
         <Compile Include="ViewModels/BaseViewModel.cs"/>
         <Compile Include="ViewModels/GameViewModel.cs"/>
+        <Compile Include="ViewModels/GameObjects.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
