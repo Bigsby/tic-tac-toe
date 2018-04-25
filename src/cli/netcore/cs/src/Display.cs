@@ -7,6 +7,7 @@ namespace TicTacToe
         private const int END_OF_BOARD = 7;
 
         private const string ESCAPE = "\x1b[";
+        private static ConsoleColor DefaultBackground = Console.BackgroundColor;
 
         public static void GoTo(int column, int row)
         {
@@ -15,18 +16,16 @@ namespace TicTacToe
 
         private static void ClearLine()
         {
-            //Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
-            Console.Write($"{ESCAPE}K");
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth)); 
+            Console.SetCursorPosition(0, currentLineCursor);
         }
 
-        public static void WriteMessage(string message)
+        private static void ResetColor()
         {
-            GoTo(0, END_OF_BOARD);
-            ClearLine();
-            GoTo(0, END_OF_BOARD + 1);
-            ClearLine();
-            Console.Write(message);
-            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = DefaultBackground;
         }
 
         public static void DrawEmptyBoard()
@@ -47,16 +46,29 @@ namespace TicTacToe
                 {
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("-----------");
+                    Console.WriteLine("───┼───┼───");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.Write("|");
+                    Console.Write("│");
                 }
             }
 
-            Console.ResetColor();
+            ResetColor();
+        }
+
+        public static void DisplayPlayerMessage(string message, ConsoleColor playerColor, char playerChar) 
+        {
+            ResetColor();
+            GoTo(0, END_OF_BOARD);
+            ClearLine();
+            GoTo(0, END_OF_BOARD + 1);
+            ClearLine();
+            Console.Write(message);
+            Console.ForegroundColor = playerColor;
+            Console.Write(playerChar);
+            ResetColor();
         }
     }
 }

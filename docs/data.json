@@ -24,7 +24,7 @@
                     "languages": [
                         {
                             "name": "C#",
-                            "link": "cli/dotnetcore/cs",
+                            "link": "cli/netcore/cs",
                             "ide": "VS Code",
                             "os": [
                                 "Windows",

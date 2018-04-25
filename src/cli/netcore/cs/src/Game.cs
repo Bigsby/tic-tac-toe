@@ -13,7 +13,8 @@ namespace TicTacToe
         private static void SetPlayerAndDisplayMessage()
         {
             _currentPlayer = _currentPlayer == XPlayer ? OPlayer : XPlayer;
-            // STOPPED here
+
+            Display.DisplayPlayerMessage("Press the number to fill in with  ", _currentPlayer.Color, _currentPlayer.Letter);
         }
 
         public static void Start()
@@ -22,6 +23,7 @@ namespace TicTacToe
             _currentPlayer = OPlayer;
 
             Display.DrawEmptyBoard();
+            SetPlayerAndDisplayMessage();
         }
 
         private class Player
