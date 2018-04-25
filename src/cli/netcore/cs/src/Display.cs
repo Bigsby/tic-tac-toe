@@ -2,12 +2,18 @@ using System;
 
 namespace TicTacToe
 {
-   public static class Display
+    public static class Display
     {
+        static Display()
+        {
+            Console.CursorVisible = false;
+        }
+
         private const int END_OF_BOARD = 7;
 
         private const string ESCAPE = "\x1b[";
         private static ConsoleColor DefaultBackground = Console.BackgroundColor;
+        private static ConsoleColor DefaultForeground = Console.ForegroundColor;
 
         public static void GoTo(int column, int row)
         {
@@ -18,22 +24,64 @@ namespace TicTacToe
         {
             int currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.WindowWidth)); 
+            Console.Write(new string(' ', Console.WindowWidth));
             Console.SetCursorPosition(0, currentLineCursor);
         }
 
         private static void ResetColor()
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = DefaultForeground;
             Console.BackgroundColor = DefaultBackground;
+        }
+
+        private static int OffsetRow(int row)
+        {
+            return 1 + (row * 2);
+        }
+
+        private static int OffsetColumn(int column)
+        {
+            return 2 + (column * 4);
+        }
+
+        public static void SetValue(int column, int row, char value, ConsoleColor color, bool isInverted = false)
+        {
+            GoTo(OffsetColumn(column), OffsetRow(row));
+            if (isInverted)
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = color;
+            }
+            else
+            {
+                Console.ForegroundColor = color;
+            }
+
+            Console.Write(value);
+            ResetColor();
+        }
+
+        public static void DisplayOverMessage(string prefixText, char player, ConsoleColor color, string sufixText)
+        {
+            GoTo(0, END_OF_BOARD + 1);
+            ClearLine();
+            Console.Write(prefixText);
+            if (player != '\0')
+            {
+                Console.ForegroundColor = color;
+                Console.Write(player);
+                ResetColor();
+                Console.Write(sufixText);
+            }
+
         }
 
         public static void DrawEmptyBoard()
         {
             Console.Clear();
-            Console.CursorVisible = false;
             Console.WriteLine();
 
+            Console.Write(" ");
             for (int number = 1; number <= 9; number++)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -46,7 +94,8 @@ namespace TicTacToe
                 {
                     Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("───┼───┼───");
+                    Console.WriteLine(" ───┼───┼───");
+                    Console.Write(" ");
                 }
                 else
                 {
@@ -58,7 +107,7 @@ namespace TicTacToe
             ResetColor();
         }
 
-        public static void DisplayPlayerMessage(string message, ConsoleColor playerColor, char playerChar) 
+        public static void DisplayPlayerMessage(string message, ConsoleColor playerColor, char playerChar)
         {
             ResetColor();
             GoTo(0, END_OF_BOARD);
@@ -69,6 +118,12 @@ namespace TicTacToe
             Console.ForegroundColor = playerColor;
             Console.Write(playerChar);
             ResetColor();
+        }
+
+        public static void DisplayFooter(string message)
+        {
+            GoTo(0, END_OF_BOARD + 3);
+            Console.Write(message);
         }
     }
 }
