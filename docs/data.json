@@ -1,0 +1,219 @@
+{
+    "baseSourceUrl": "https://github.com/Bigsby/tic-tac-toe/tree/master/src/",
+    "interfaces": [
+        {
+            "name": "CLI",
+            "runtimes": [
+                {
+                    "name": "NodeJS",
+                    "languages": [
+                        {
+                            "name": "JavaScript",
+                            "link": "cli/nodejs/js",
+                            "ide": "VS Code",
+                            "os": [
+                                "Windows",
+                                "Linux",
+                                "macOS"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": ".Net Core",
+                    "languages": [
+                        {
+                            "name": "C#",
+                            "link": "cli/dotnetcore/cs",
+                            "ide": "VS Code",
+                            "os": [
+                                "Windows",
+                                "Linux",
+                                "macOS"
+                            ]
+                        },
+                        {
+                            "name": "F#"
+                        }
+                    ]
+                },
+                {
+                    "name": "Native",
+                    "languages": [
+                        {
+                            "name": "C"
+                        },
+                        {
+                            "name": "C++"
+                        },
+                        {
+                            "name": "Go"
+                        }
+                    ]
+                },
+                {
+                    "name": "Python"
+                },
+                {
+                    "name": "Ruby"
+                },
+                {
+                    "name": "Java"
+                },
+                {
+                    "name": "PHP"
+                },
+                {
+                    "name": "Perl"
+                },
+                {
+                    "name": "Erlang"
+                },
+                {
+                    "name": "PowerShell"
+                },
+                {
+                    "name": "Scala"
+                },
+                {
+                    "name": ".Net Framework",
+                    "languages": [
+                        {
+                            "name": "C#"
+                        },
+                        {
+                            "name": "F#"
+                        },
+                        {
+                            "name": "VB.Net"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Desktop (GUI)",
+            "runtimes": [
+                {
+                    "name": "WPF",
+                    "languages": [
+                        {
+                            "name": "C#",
+                            "link": "desktop/wpf/cs",
+                            "ide": "VS Code",
+                            "os": [
+                                "Windows"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "UWP"
+                },
+                {
+                    "name": "Electron"
+                },
+                {
+                    "name": "GTK+"
+                },
+                {
+                    "name": "Windows Forms"
+                },
+                {
+                    "name": "Qt"
+                }
+            ]
+        },
+        {
+            "name": "Web",
+            "runtimes": [
+                {
+                    "name": "VanillaJS",
+                    "languages": [
+                        {
+                            "name": "JavaScript",
+                            "link": "web/vanillajs"
+                        },
+                        {
+                            "name": "TypeScript"
+                        },
+                        {
+                            "name": "CoffeeScript"
+                        }
+                    ]
+                },
+                {
+                    "name": "AngularJS"
+                },
+                {
+                    "name": "Angular"
+                },
+                {
+                    "name": "React"
+                },
+                {
+                    "name": "Redux"
+                },
+                {
+                    "name": "React + Redux"
+                },
+                {
+                    "name": "VueJS"
+                },
+                {
+                    "name": "Aurelia"
+                }
+            ]
+        },
+        {
+            "name": "Mobile",
+            "runtimes": [
+                {
+                    "name": "Android",
+                    "languages": [
+                        {
+                            "name": "Java"
+                        },
+                        {
+                            "name": "Kotlin"
+                        },
+                        {
+                            "name": "C# - Xamarin"
+                        }
+                    ]
+                },
+                {
+                    "name": "iOS",
+                    "languages": [
+                        {
+                            "name": "Swift"
+                        },
+                        {
+                            "name": "Objective-C"
+                        },
+                        {
+                            "name": "C# - Xamarin"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cross-Platform",
+            "runtimes": [
+                {
+                    "name": "Xamarin Shared"
+                },
+                {
+                    "name": "Xamarin Forms"
+                },
+                {
+                    "name": "Mono Game"
+                },
+                {
+                    "name": "Unity"
+                }
+            ]
+        }
+    ]
+}

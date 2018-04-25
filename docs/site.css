@@ -1,0 +1,86 @@
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Lucida Console";
+    font-size: 20px;
+    color: #fefefe;
+    background-color: #022140;
+}
+
+h1 {
+    margin-top: 0;
+    padding: 1em;
+    background-color: #265077;
+}
+
+a {
+    color: #cc6600;
+}
+
+p {
+    margin: 20px;
+}
+
+div#imageContainer {
+    width: 100%;
+    text-align: center;
+}
+
+footer {
+    background-color: #265077;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+footer span,
+footer a {
+    margin: 3px;
+}
+
+div#intefaceContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2em;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.interface-group {
+    border: solid 2px #cc6600;
+    margin: 20px;
+    min-width: 200px;
+}
+
+.interface-title {
+    padding: 5px;
+    
+    background-color:#cc6600;
+    text-align: center;
+}
+
+.runtime-title {
+    padding: 5px;
+    color: #fefefe;
+    background-color:#265077;
+    
+}
+
+.language-group {
+    margin: 3px;
+}
+
+.language-title {
+    padding-left: 10px;
+}
