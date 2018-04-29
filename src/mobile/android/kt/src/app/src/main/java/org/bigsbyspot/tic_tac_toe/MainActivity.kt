@@ -37,9 +37,7 @@ class MainActivity : AppCompatActivity() {
     fun clearBoard() {
         for (childIndex in 0..(boardGrid?.childCount ?: 0)) {
             val number = childIndex + 1
-            val textView = boardGrid?.getChildAt(childIndex) as? TextView
-            textView?.setTextColor(getResourceColor(R.color.colorDefaultBoardText))
-            textView?.text = "${number}"
+            setValue(number, number.toString(), R.color.colorDefaultBoardText)
         }
     }
 
@@ -53,9 +51,16 @@ class MainActivity : AppCompatActivity() {
         messageDisplay?.text = message
     }
 
-    fun setValue(number: Int, value: String, color: Int) {
+    fun setValue(number: Int, value: String, color: Int, isReversed: Boolean = false) {
         val textView = boardGrid?.getChildAt(number - 1) as? TextView
         textView?.text = value
-        textView?.setTextColor(getResourceColor(color))
+        if (isReversed){
+            textView?.setTextColor(getResourceColor(R.color.colorReverseColor))
+            textView?.setBackgroundColor(getResourceColor(color))
+        }
+        else {
+            textView?.setTextColor(getResourceColor(color))
+            textView?.setBackgroundColor(getResourceColor(R.color.colorBoardBackground))
+        }
     }
 }

@@ -173,7 +173,14 @@
                             "name": "Java"
                         },
                         {
-                            "name": "Kotlin"
+                            "name": "Kotlin",
+                            "link": "mobile/android/kt",
+                            "ide": "Android Studio",
+                            "os": [
+                                "Windows",
+                                "Linux",
+                                "macOS"
+                            ]
                         },
                         {
                             "name": "C# - Xamarin"

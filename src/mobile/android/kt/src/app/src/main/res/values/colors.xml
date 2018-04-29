@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorText">#D3D3D3</color>
+    <color name="colorBoardBackground">#00000000</color>
+    <color name="colorReverseColor">#333333</color>
 
     <color name="colorDivider">#00FFFF</color>
 
