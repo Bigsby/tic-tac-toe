@@ -183,7 +183,12 @@
                             ]
                         },
                         {
-                            "name": "C# - Xamarin"
+                            "name": "C# - Xamarin",
+                            "ide": "Visual Studio",
+                            "os": [
+                                "Windows",
+                                "macOS"
+                            ]
                         }
                     ]
                 },
