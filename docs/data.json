@@ -147,7 +147,13 @@
                     "name": "Angular"
                 },
                 {
-                    "name": "React"
+                    "name": "React",
+                    "languages":[
+                        {
+                            "name": "JSX",
+                            "ide": "VS Code"
+                        }
+                    ]
                 },
                 {
                     "name": "Redux"

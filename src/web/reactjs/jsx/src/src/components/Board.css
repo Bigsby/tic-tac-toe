@@ -1,0 +1,23 @@
+table {
+    border-collapse: collapse;
+}
+
+tr.middle {
+    border-top: solid 2px cyan;
+    border-bottom: solid 2px cyan;
+}
+
+td {
+    width: 80px;
+    height: 80px;
+    color: green;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+td.middle {
+    border-left: solid 2px cyan;
+    border-right: solid 2px cyan;
+}
