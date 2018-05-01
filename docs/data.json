@@ -16,6 +16,9 @@
                                 "Linux",
                                 "macOS"
                             ]
+                        },
+                        {
+                            "name": "TypeScript"
                         }
                     ]
                 },
@@ -108,10 +111,32 @@
                     ]
                 },
                 {
-                    "name": "UWP"
+                    "name": "UWP",
+                    "languages":[
+                        {
+                            "name": "C#"
+                        },
+                        {
+                            "name": "VB.Net"
+                        },
+                        {
+                            "name": "JavaScript"
+                        },
+                        {
+                            "name": "C++"
+                        }
+                    ]
                 },
                 {
-                    "name": "Windows Forms"
+                    "name": "Windows Forms",
+                    "languages":[
+                        {
+                            "name": "C#"
+                        },
+                        {
+                            "name": "VB.Net"
+                        }
+                    ]
                 },
                 {
                     "name": "Cocoa"
@@ -141,10 +166,20 @@
                     "name": "jQuery"
                 },
                 {
-                    "name": "AngularJS"
+                    "name": "AngularJS",
+                    "languages":[
+                        {
+                            "name": "JavaScript"
+                        }
+                    ]
                 },
                 {
-                    "name": "Angular"
+                    "name": "Angular",
+                    "languages":[
+                        {
+                            "name": "TypeScript"
+                        }
+                    ]
                 },
                 {
                     "name": "React",
@@ -195,6 +230,9 @@
                                 "Windows",
                                 "macOS"
                             ]
+                        },
+                        {
+                            "name": "F#"
                         }
                     ]
                 },
@@ -209,6 +247,9 @@
                         },
                         {
                             "name": "C# - Xamarin"
+                        },
+                        {
+                            "name": "F#"
                         }
                     ]
                 }
