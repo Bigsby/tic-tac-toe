@@ -38,18 +38,10 @@ export default class Board extends Component {
         props.game.setBoard(this);
     }
 
-    displayEmptyBoard = () => {
-        var emptyValues = [];
-        for (let index = 0; index < 9; index++) {
-            emptyValues.push({
-                value: `${index + 1}`,
-                color: "#00ff00"
-            });
-        }
-        this.setState({
-            values: emptyValues
-        });
+    updateValue = (columnIndex, rowIndex, value) => {
+        this.props.children
     }
+
     render() {
         const rows = [0, 1, 2].map(index => <BoardRow rowIndex={index} game={this.props.game} class={index % 3 === 1 ? "middle" : ""} />);
         return <table id="board">
